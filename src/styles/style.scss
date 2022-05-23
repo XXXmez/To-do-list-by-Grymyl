@@ -3,3 +3,227 @@
     padding: 0;
     box-sizing: border-box;
 }
+a {
+    text-decoration: none;
+    color: #ebedff;
+    font-weight: 900;
+}
+
+body {
+    color: #ebedff;
+    font-family: 'Exo 2', sans-serif;
+}
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+}
+.siderbar {
+    width: 280px;
+    flex-shrink: 0;
+    background: linear-gradient(90deg, #6a5d7b, #345d7d);
+
+    &-wrapper {
+        margin: 15px 15px 0;
+    }
+    &-title {
+        padding: 5px 0;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        
+        & h1 {
+            font-size: 24px;
+            line-height: 36px;
+        }
+    }
+    &-content {
+    }
+}
+
+.projects {
+    &-title {
+        padding: 5px 0;
+        border-bottom: 2px solid gray;
+        margin-bottom: 10px;
+        & h2 {
+            font-size: 18px;
+            line-height: 27px;
+        }
+    }
+    &-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    &-items {
+        display: flex;
+        padding: 10px;
+        border-radius: 5px;
+        align-items: center;
+        transition: .3s;
+
+        &:hover {
+            background-color: #c06c8465;
+        }
+
+        &.active {
+            background: #c06c84;
+        }
+    }
+}
+
+.item {
+    &-icon {
+        margin-right: 10px;
+        font-size: 12px;
+        display: flex;
+    }
+    &-name {
+        font-size: 14px;
+        line-height: 21px;
+    }
+    &-count {
+        margin-left: auto;
+        font-size: 12px;
+        line-height: 18px;
+        opacity: .8;
+    }
+}
+
+.siderbar-footer {
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background-color: #345d7d;
+
+    &-wrapper {
+        padding: 30px;
+        width: 100%;
+        height: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    &-header {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid gray;
+    }
+    &-title {
+        line-height: 36px;
+    }
+    &-content {
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            bottom: 0;
+            left: 0;
+            box-shadow: inset 0 -76px 40px -30px #345d7d;
+            z-index: 2;
+        }
+    }
+    &-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        height: 80vh;
+        overflow-y: scroll;
+        padding-bottom: 50px;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: rgba(218, 218, 218, 0.5);
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgb(83, 192, 255);
+            border-radius: 5px;
+        }
+    }
+    &-item {
+    }
+}
+
+.control {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+
+    &-plus {
+        font-size: 12px;
+        padding: 5px;
+        background-color: gray;
+        border-radius: 5px;
+    }
+    &-edit {
+        font-size: 12px;
+        padding: 5px;
+        background-color: gray;
+        border-radius: 5px;
+    }
+    &-remove {
+        font-size: 12px;
+        padding: 5px;
+        background-color: gray;
+        border-radius: 5px;
+    }
+}
+
+
+.task {
+    display: flex;
+    align-items: flex-start;
+
+    &-chek {
+        height: 32px;
+        width: 32px;
+        background-color: #f9b198;
+        opacity: .5;
+        border-radius: 3px;
+        margin-right: 10px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+    }
+    &-content {
+        width: 100%;
+        padding: 10px 15px;
+        background: #d1837785;
+        
+        &.red {
+            border-left: 3px solid red;
+        }
+        &.yellow {
+            border-left: 3px solid yellow;
+        }
+        &.blue {
+            border-left: 3px solid blue;
+        }
+    }
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        align-items: center;
+    }
+    &-title {
+        font-size: 18px;
+        line-height: 27px;
+    }
+    &-desc {
+        width: 90%;
+        font-size: 14px;
+        line-height: 21px;
+    }
+}
