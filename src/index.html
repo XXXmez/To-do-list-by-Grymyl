@@ -1,12 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-    
+  <div class="container">
+    <div class="siderbar">
+      <div class="siderbar-wrapper">
+        <div class="siderbar-title">
+          <h1>Todo list</h1>
+        </div>
+        <div class="siderbar-content">
+          <div class="siderbar-projects">
+            <div class="projects-title">
+                <h2>PROJECTS</h2>
+            </div>
+            <ul class="projects-list">
+              <li class="project-item active">
+                <div class="item-icon"><i class="fa-solid fa-list-check"></i></div>
+                <div class="item-name">Work</div>
+                <div class="item-count">5</div>
+              </li>
+              <li class="project-item">
+                <div class="item-icon"><i class="fa-solid fa-list-check"></i></div>
+                <div class="item-name">Work</div>
+                <div class="item-count">5</div>
+              </li>
+              <li class="project-item">
+                <div class="item-icon"><i class="fa-solid fa-list-check"></i></div>
+                <div class="item-name">Work</div>
+                <div class="item-count">5</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="siderbar-footer"></div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="main-wrapper">
+        <div class="main-header">
+          <div class="main-title">
+            <h2>Work</h2>
+          </div>
+          <div class="main-controls">
+            <div class="control-plus fa-solid fa-plus"></div>
+            <div class="control-edit fa-solid fa-pen"></div>
+            <div class="control-remove fa-solid fa-trash-can"></div>
+          </div>
+        </div>
+          <div class="main-content">
+            <ul class="main-list">
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="main-item">
+                  <div class="task">
+                    <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+                    <div class="task-content red">
+                      <div class="task-header">
+                        <div class="task-title">
+                          <h3>title task</h3>
+                        </div>
+                        <div class="task-controls">
+                          <div class="control-edit fa-solid fa-pen"></div>
+                          <div class="control-remove fa-solid fa-trash-can"></div>
+                        </div>
+                      </div>
+                      <div class="task-desc">
+                        <p>For some people there is nothing so exciting as traveling, and I'm not an exception. And I'm happy that I have traveled</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+          </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
