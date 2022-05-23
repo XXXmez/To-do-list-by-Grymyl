@@ -1,0 +1,33 @@
+{
+  "name": "to-do-list-by-grymyl",
+  "version": "1.0.0",
+  "description": "To-do list",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch",
+    "serve": "webpack serve --open",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XXXmez/To-do-list-by-Grymyl.git"
+  },
+  "author": "Grymyl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XXXmez/To-do-list-by-Grymyl/issues"
+  },
+  "homepage": "https://github.com/XXXmez/To-do-list-by-Grymyl#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "favicons": "^7.0.0-beta.4",
+    "favicons-webpack-plugin": "^5.0.2",
+    "html-webpack-plugin": "^5.5.0",
+    "sass": "^1.52.1",
+    "sass-loader": "^13.0.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  }
+}
