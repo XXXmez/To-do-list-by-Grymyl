@@ -62,6 +62,8 @@ body {
         border-radius: 5px;
         align-items: center;
         transition: .3s;
+        user-select: none;
+        cursor: pointer;
 
         &:hover {
             background-color: #c06c8465;
@@ -153,29 +155,26 @@ body {
     }
 }
 
-.control {
+.controls {
     display: flex;
     gap: 5px;
     align-items: center;
 
-    &-plus {
+    &-item {
         font-size: 12px;
         padding: 5px;
         background-color: gray;
         border-radius: 5px;
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #70bfed;
+        }
     }
-    &-edit {
-        font-size: 12px;
-        padding: 5px;
-        background-color: gray;
-        border-radius: 5px;
-    }
-    &-remove {
-        font-size: 12px;
-        padding: 5px;
-        background-color: gray;
-        border-radius: 5px;
-    }
+    &-plus {}
+    &-edit {}
+    &-remove {}
 }
 
 
@@ -186,8 +185,7 @@ body {
     &-chek {
         height: 32px;
         width: 32px;
-        background-color: #f9b198;
-        opacity: .5;
+        background-color: #f9b1986e;
         border-radius: 3px;
         margin-right: 10px;
         flex-shrink: 0;
@@ -195,6 +193,15 @@ body {
         align-items: center;
         justify-content: center;
         z-index: 1;
+        transition: .3s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #f9b098c4;
+        }
+        &.active {
+            background-color: #f9b098;
+        }
     }
     &-content {
         width: 100%;
