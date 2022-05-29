@@ -45,9 +45,17 @@ body {
         padding: 5px 0;
         border-bottom: 2px solid gray;
         margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         & h2 {
             font-size: 18px;
             line-height: 27px;
+        }
+        &__add-theme {
+            font-size: 14px !important;
+            padding: 5px;
         }
     }
     &-list {
@@ -55,6 +63,8 @@ body {
         display: flex;
         flex-direction: column;
         gap: 10px;
+        overflow-y: auto;
+        height: 70vh;
     }
     &-items {
         display: flex;
@@ -84,6 +94,7 @@ body {
     &-name {
         font-size: 14px;
         line-height: 21px;
+        text-transform: capitalize;
     }
     &-count {
         margin-left: auto;
@@ -116,6 +127,9 @@ body {
     }
     &-title {
         line-height: 36px;
+        & > h2 {
+            text-transform: capitalize;
+        }
     }
     &-content {
         position: relative;
