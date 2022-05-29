@@ -136,10 +136,11 @@ class createTheme {
 }
 
 class createTask {
-    constructor(title, importance, description) {
+    constructor(title, importance, description, id) {
         this.title = title;
         this.importance = importance;
         this.description = description;
+        this.id = id;
     }
 
     create() {
@@ -167,6 +168,15 @@ class createTask {
         li.append(divTask);
 
         mainList.prepend(li);
+
+        let controlRemove = divTask.querySelector('.control-remove');
+        controlRemove.addEventListener('click', () => {
+            console.log('Удаление', this.id);
+            let i = JSON.parse(localStorage.getItem('db'));
+            i.splice(this.id , 1);
+            localStorage.setItem('db', JSON.stringify(i));
+            li.remove(li);
+        });
     }
 
     saveDB() {
@@ -194,10 +204,10 @@ function activeMenu1(elMenu, name) {
 
     mainList.innerHTML = '';
     //console.log(JSON.parse(localStorage.getItem('db')));
-    JSON.parse(localStorage.getItem('db')).forEach((e) => {
+    JSON.parse(localStorage.getItem('db')).forEach((e, i) => {
         if (e.theme == activeMenu) {
             //console.log(e);
-            new createTask(e.title, e.importance, e.description).create()
+            new createTask(e.title, e.importance, e.description, i).create()
         }
     })
 }
@@ -212,7 +222,8 @@ function addTheme() {
 buttonAddTheme.addEventListener('click', addTheme);
 
 mainControlPlus.addEventListener('click', () => {
-    new createTask('title new', 'red', 'new task new task new task new task new task new task new task new task').create();
+    console.log();
+    new createTask('title new', 'red', 'new task new task new task new task new task new task new task new task', JSON.parse(localStorage.getItem('db')).length).create();
     new createTask('title new', 'red', 'new task new task new task new task new task new task new task new task').saveDB();
 });
 
