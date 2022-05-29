@@ -79,23 +79,31 @@ const dd = [
         description: 'For some people there is nothing so exciting as traveling, and I\'m not an exception. And I\'m happy that I have traveled',
     },
 ];
+const grThemeName = ["work","live","sport"];
 
-//let a = localStorage.setItem('db', JSON.stringify(dd));
+if (!localStorage.getItem('db')) {
+    localStorage.setItem('db', JSON.stringify(dd));
+}
+if (!localStorage.getItem('Grymyl_Theme_Name')) {
+    localStorage.setItem('Grymyl_Theme_Name', JSON.stringify(grThemeName));
+}
+
+// localStorage.setItem('db', JSON.stringify(dd));
 //console.log(JSON.parse(localStorage.getItem('db')));
 
-const mainControlPlus = document.querySelector('.main-control-plus'),
-    mainControlEdit = document.querySelector('.main-control-edit'),
-    mainControlRemove = document.querySelector('.main-control-remove');
+const mainControlPlus = document.querySelector('.main-control-plus'),               // добавить задание в текущий раздел
+    mainControlEdit = document.querySelector('.main-control-edit'),                 // редактировать раздел
+    mainControlRemove = document.querySelector('.main-control-remove');             // удалить раздел
 
-const projectsList = document.querySelector('.projects-list');
+const projectsList = document.querySelector('.projects-list');                      // разделы
 
-const buttonAddTheme = document.querySelector('.projects-title__add-theme');
+const buttonAddTheme = document.querySelector('.projects-title__add-theme');        // добавить раздел
 
-const mainTitleH = document.querySelector('.main-title > h2');
+const mainTitleH = document.querySelector('.main-title > h2');                      // главный титл
 
-const mainList = document.querySelector('.main-list');
+const mainList = document.querySelector('.main-list');                              // доска заданий
 
-let activeMenu = '';
+let activeMenu = '';                                                                // активный раздел
 
 class createTheme {
     constructor(name) {
@@ -114,25 +122,16 @@ class createTheme {
         `;
         projectsList.append(li);
 
-        li.addEventListener('click', (e,i) => {
-            const menu = document.querySelectorAll('.projects-items');
-            menu.forEach((e) => {
-                e.classList.remove('active');
-            });
-            li.classList.add('active');
-            activeMenu = li.dataset.name;
-            console.log(activeMenu);
-            mainTitleH.textContent = this.name;
-
-            mainList.innerHTML = '';
-            console.log(dd);
-            dd.forEach((e) => {
-                if (e.theme == activeMenu) {
-                    //console.log(e);
-                    new createTask(e.title, e.importance, e.description).create()
-                }
-            })
+        li.addEventListener('click', (e) => {
+            //console.log(e.currentTarget, li);
+            activeMenu1(e.currentTarget, this.name);
         });
+    }
+    saveDB() {
+        let i = JSON.parse(localStorage.getItem('Grymyl_Theme_Name')) || [];
+        //console.log(i);
+        i.push(this.name);
+        localStorage.setItem('Grymyl_Theme_Name', JSON.stringify(i));
     }
 }
 
@@ -167,23 +166,47 @@ class createTask {
         `;
         li.append(divTask);
 
-        mainList.append(li);
+        mainList.prepend(li);
     }
 
     saveDB() {
-        dd.push({
+        let i = JSON.parse(localStorage.getItem('db'));
+        i.push({
             chek: false,
             description: this.description,
             title: this.title,
             theme: activeMenu,
             importance: this.importance,
         });
+        localStorage.setItem('db', JSON.stringify(i));
     }
 }
 
-function addTheme () {
-    console.log('Новая тема');
-    new createTheme(prompt('Тема')).create()
+function activeMenu1(elMenu, name) {
+    const menu = document.querySelectorAll('.projects-items');
+    menu.forEach((e) => {
+        e.classList.remove('active');
+    });
+    elMenu.classList.add('active');
+    activeMenu = elMenu.dataset.name;
+    //console.log(activeMenu);
+    mainTitleH.textContent = name;
+
+    mainList.innerHTML = '';
+    //console.log(JSON.parse(localStorage.getItem('db')));
+    JSON.parse(localStorage.getItem('db')).forEach((e) => {
+        if (e.theme == activeMenu) {
+            //console.log(e);
+            new createTask(e.title, e.importance, e.description).create()
+        }
+    })
+}
+
+function addTheme() {
+    //console.log('Новая тема');
+    let a = prompt('Тема')
+    new createTheme(a).create()
+    new createTheme(a).saveDB()
 }
 
 buttonAddTheme.addEventListener('click', addTheme);
@@ -196,7 +219,11 @@ mainControlPlus.addEventListener('click', () => {
 
 
 
-// test 
-new createTheme('work').create()
-new createTheme('life').create()
-new createTheme('sport').create()
+// test
+JSON.parse(localStorage.getItem('Grymyl_Theme_Name')).forEach((e) => {
+    new createTheme(e).create()
+});
+activeMenu1(
+    document.querySelectorAll('.projects-items')[0],
+    document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent
+)
