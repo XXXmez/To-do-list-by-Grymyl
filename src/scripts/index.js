@@ -1,4 +1,5 @@
 import '../styles/style.scss';
+document.addEventListener('DOMContentLoaded', () => {
 
 const dd = [
     {
@@ -171,12 +172,24 @@ class createTask {
 
         let controlRemove = divTask.querySelector('.control-remove');
         controlRemove.addEventListener('click', () => {
-            console.log('Удаление', this.id);
+            console.log('Удаление ', this.id);
             let i = JSON.parse(localStorage.getItem('db'));
             i.splice(this.id , 1);
             localStorage.setItem('db', JSON.stringify(i));
             li.remove(li);
             fgh(activeMenu);
+        });
+
+        let controlEdit = divTask.querySelector('.control-edit');
+        let taskDescP = divTask.querySelector('.task-desc > p');
+        controlEdit.addEventListener('click', () => {
+            console.log('редактировать ', this.id);
+            let i = JSON.parse(localStorage.getItem('db'));
+            console.log(i[this.id].description);
+            let af = prompt('Редактировать на - ');
+            i[this.id].description = af;
+            taskDescP.textContent = af;
+            localStorage.setItem('db', JSON.stringify(i));
         });
 
     }
@@ -194,6 +207,7 @@ class createTask {
     }
 }
 
+// функция счетчик задач в разделе
 function fgh(am) {
     let projectsItems = document.querySelectorAll('.projects-items');
     let cc = 0;
@@ -211,6 +225,7 @@ function fgh(am) {
     });
 }
 
+// функция активации раздела
 function activeMenu1(elMenu, name) {
     const menu = document.querySelectorAll('.projects-items');
     menu.forEach((e) => {
@@ -231,14 +246,17 @@ function activeMenu1(elMenu, name) {
     })
 }
 
+// функция добавления раздела
 function addTheme() {
     let a = prompt('Тема')
     new createTheme(a).create()
     new createTheme(a).saveDB()
 }
 
+// добавить раздел
 buttonAddTheme.addEventListener('click', addTheme);
 
+// добавить задачу
 mainControlPlus.addEventListener('click', () => {
     let title = 'title new';
     let inc = 'red';
@@ -255,7 +273,9 @@ mainControlPlus.addEventListener('click', () => {
 JSON.parse(localStorage.getItem('Grymyl_Theme_Name')).forEach((e) => {
     new createTheme(e).create()
 });
+// активация первого раздела
 activeMenu1(
     document.querySelectorAll('.projects-items')[0],
     document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent
 )
+});
