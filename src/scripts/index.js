@@ -126,10 +126,10 @@ class createTheme {
             //console.log(e.currentTarget, li);
             activeMenu1(e.currentTarget, this.name);
         });
+        fgh(`theme${this.id}`)
     }
     saveDB() {
         let i = JSON.parse(localStorage.getItem('Grymyl_Theme_Name')) || [];
-        //console.log(i);
         i.push(this.name);
         localStorage.setItem('Grymyl_Theme_Name', JSON.stringify(i));
     }
@@ -176,11 +176,13 @@ class createTask {
             i.splice(this.id , 1);
             localStorage.setItem('db', JSON.stringify(i));
             li.remove(li);
+            fgh(activeMenu);
         });
+
     }
 
     saveDB() {
-        let i = JSON.parse(localStorage.getItem('db'));
+        let i = JSON.parse(localStorage.getItem('db')) || [];
         i.push({
             chek: false,
             description: this.description,
@@ -190,6 +192,23 @@ class createTask {
         });
         localStorage.setItem('db', JSON.stringify(i));
     }
+}
+
+function fgh(am) {
+    let projectsItems = document.querySelectorAll('.projects-items');
+    let cc = 0;
+    JSON.parse(localStorage.getItem('db')).forEach((e) => {
+        if (e.theme == am) {
+            cc++;
+        }
+    });
+    console.log(cc);
+
+    projectsItems.forEach((e) => {
+        if (e.dataset.name == am) {
+            e.querySelector('.item-count').textContent = cc;
+        }
+    });
 }
 
 function activeMenu1(elMenu, name) {
@@ -213,7 +232,6 @@ function activeMenu1(elMenu, name) {
 }
 
 function addTheme() {
-    //console.log('Новая тема');
     let a = prompt('Тема')
     new createTheme(a).create()
     new createTheme(a).saveDB()
@@ -222,15 +240,18 @@ function addTheme() {
 buttonAddTheme.addEventListener('click', addTheme);
 
 mainControlPlus.addEventListener('click', () => {
-    console.log();
-    new createTask('title new', 'red', 'new task new task new task new task new task new task new task new task', JSON.parse(localStorage.getItem('db')).length).create();
-    new createTask('title new', 'red', 'new task new task new task new task new task new task new task new task').saveDB();
+    let title = 'title new';
+    let inc = 'red';
+    let desc = 'new task new task new task new task new task new task new task new task';
+    let lengthId = JSON.parse(localStorage.getItem('db')).length;
+
+    new createTask(title, inc, desc, lengthId).create();
+    new createTask(title, inc, desc, lengthId).saveDB();
+
+    fgh(activeMenu);
 });
 
-
-
-
-// test
+// Вывод разделов
 JSON.parse(localStorage.getItem('Grymyl_Theme_Name')).forEach((e) => {
     new createTheme(e).create()
 });
