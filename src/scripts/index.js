@@ -268,6 +268,18 @@ mainControlPlus.addEventListener('click', () => {
 
     fgh(activeMenu);
 });
+// удалить раздел и задачи раздела
+mainControlRemove.addEventListener('click', () => {
+    console.log('Удалить раздел :', activeMenu);
+    let i = JSON.parse(localStorage.getItem('db')) || [];
+    i.forEach((e,f) => {
+        if (e.theme == activeMenu) {
+            console.log(e,f);
+            i.splice(f, 1);
+        }
+    })
+    localStorage.setItem('db', JSON.stringify(i));
+});
 
 // Вывод разделов
 JSON.parse(localStorage.getItem('Grymyl_Theme_Name')).forEach((e) => {
