@@ -80,7 +80,23 @@ const dd = [
         description: 'For some people there is nothing so exciting as traveling, and I\'m not an exception. And I\'m happy that I have traveled',
     },
 ];
-const grThemeName = ["work","live","sport"];
+const grThemeName = [
+    {
+        name: 'work',
+        id: 1,
+    },
+    {
+        name: 'work',
+        id: 2,
+    },
+    {
+        name: 'work',
+        id: 3,
+    }
+];
+
+//["work","live","sport"];
+
 
 if (!localStorage.getItem('db')) {
     localStorage.setItem('db', JSON.stringify(dd));
@@ -105,17 +121,19 @@ const mainTitleH = document.querySelector('.main-title > h2');                  
 const mainList = document.querySelector('.main-list');                              // доска заданий
 
 let activeMenu = '';                                                                // активный раздел
+let activeMenuElem = '';
 
 class createTheme {
-    constructor(name) {
+    constructor(name, id) {
         this.name = name;
-        this.id = document.querySelectorAll('.projects-items').length + 1;
+        this.id = id;
     }
 
     create() {
         let li = document.createElement('li');
         li.className = 'projects-items item';
         li.dataset.name = `theme${this.id}`;
+        li.dataset.id = `${this.id}`;
         li.innerHTML = `
             <div class="item-icon"><i class="fa-solid fa-list-check"></i></div>
             <div class="item-name">${this.name}</div>
@@ -131,7 +149,9 @@ class createTheme {
     }
     saveDB() {
         let i = JSON.parse(localStorage.getItem('Grymyl_Theme_Name')) || [];
-        i.push(this.name);
+        i.push({
+            name: this.name, id: this.id
+        });
         localStorage.setItem('Grymyl_Theme_Name', JSON.stringify(i));
     }
 }
@@ -207,16 +227,24 @@ class createTask {
     }
 }
 
+// функция считает возвращает нужный id для меню
+function idsMenu() {
+    let projectsItems = document.querySelectorAll('.projects-items');
+    let lastItem = projectsItems[projectsItems.length - 1] || 0;
+    if (lastItem != 0) return +lastItem.dataset.id + 1 
+    else return 1
+}
+
 // функция счетчик задач в разделе
 function fgh(am) {
     let projectsItems = document.querySelectorAll('.projects-items');
     let cc = 0;
     JSON.parse(localStorage.getItem('db')).forEach((e) => {
-        if (e.theme == am) {
+        if (e && e.theme == am) {
             cc++;
         }
     });
-    console.log(cc);
+    //console.log(cc);
 
     projectsItems.forEach((e) => {
         if (e.dataset.name == am) {
@@ -239,18 +267,22 @@ function activeMenu1(elMenu, name) {
     mainList.innerHTML = '';
     //console.log(JSON.parse(localStorage.getItem('db')));
     JSON.parse(localStorage.getItem('db')).forEach((e, i) => {
-        if (e.theme == activeMenu) {
+        if (e && e.theme == activeMenu) {
             //console.log(e);
             new createTask(e.title, e.importance, e.description, i).create()
         }
     })
+
+    activeMenuElem = elMenu;
+    console.log(activeMenuElem); 
 }
 
 // функция добавления раздела
 function addTheme() {
     let a = prompt('Тема')
-    new createTheme(a).create()
-    new createTheme(a).saveDB()
+    let b = idsMenu()
+    new createTheme(a, b).create()
+    new createTheme(a, b).saveDB()
 }
 
 // добавить раздел
@@ -268,26 +300,44 @@ mainControlPlus.addEventListener('click', () => {
 
     fgh(activeMenu);
 });
+
 // удалить раздел и задачи раздела
 mainControlRemove.addEventListener('click', () => {
     console.log('Удалить раздел :', activeMenu);
     let i = JSON.parse(localStorage.getItem('db')) || [];
     i.forEach((e,f) => {
-        if (e.theme == activeMenu) {
-            console.log(e,f);
-            i.splice(f, 1);
+        if (e && e.theme == activeMenu) {
+            delete(i[f]);
         }
     })
-    localStorage.setItem('db', JSON.stringify(i));
+    let result = i.filter((item) => item);
+    localStorage.setItem('db', JSON.stringify(result));
+
+    let projectsItems = activeMenuElem.dataset.id;
+
+    let ii = JSON.parse(localStorage.getItem('Grymyl_Theme_Name')) || [];
+    ii.forEach((e,i) => {
+        console.log(e.id == projectsItems, i);
+        if(e.id == projectsItems) ii.splice(i, 1);
+    })
+    
+    localStorage.setItem('Grymyl_Theme_Name', JSON.stringify(ii));
+
+    // удаление раздела из памяти
+
+    activeMenuElem.remove(activeMenuElem);
+
+    activeMenu1(document.querySelectorAll('.projects-items')[0],document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent);
 });
 
 // Вывод разделов
-JSON.parse(localStorage.getItem('Grymyl_Theme_Name')).forEach((e) => {
-    new createTheme(e).create()
-});
+let base = JSON.parse(localStorage.getItem('Grymyl_Theme_Name'));
+if (base) {
+    base.forEach((e) => {
+        new createTheme(e.name, e.id).create()
+    });
+}
+
 // активация первого раздела
-activeMenu1(
-    document.querySelectorAll('.projects-items')[0],
-    document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent
-)
+activeMenu1(document.querySelectorAll('.projects-items')[0],document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent);
 });
