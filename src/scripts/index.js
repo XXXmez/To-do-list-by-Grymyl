@@ -256,6 +256,7 @@ function fgh(am) {
 // функция активации раздела
 function activeMenu1(elMenu, name) {
     const menu = document.querySelectorAll('.projects-items');
+    console.log(menu);
     menu.forEach((e) => {
         e.classList.remove('active');
     });
@@ -327,7 +328,14 @@ mainControlRemove.addEventListener('click', () => {
 
     activeMenuElem.remove(activeMenuElem);
 
-    activeMenu1(document.querySelectorAll('.projects-items')[0],document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent);
+    if (ii.length > 0) {
+        activeMenu1(document.querySelectorAll('.projects-items')[0],document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent);
+    } else {
+        mainList.innerHTML = ''
+        mainTitleH.textContent = 'Раздела нет'
+        activeMenu = ''
+    }
+    
 });
 
 // Вывод разделов
@@ -339,5 +347,12 @@ if (base) {
 }
 
 // активация первого раздела
-activeMenu1(document.querySelectorAll('.projects-items')[0],document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent);
+if (document.querySelectorAll('.projects-items').length > 0) {
+    activeMenu1(document.querySelectorAll('.projects-items')[0],document.querySelectorAll('.projects-items')[0].querySelector('.item-name').textContent);
+} else {
+    mainList.innerHTML = ''
+    mainTitleH.textContent = 'Раздела нет'
+    activeMenu = ''
+}
+
 });
