@@ -119,13 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainControlPlus = document.querySelector(".main-control-plus"); // добавить задание в текущий раздел
   const mainControlEdit = document.querySelector(".main-control-edit"); // редактировать раздел
   const mainControlRemove = document.querySelector(".main-control-remove"); // удалить раздел
-
   const projectsList = document.querySelector(".projects-list"); // разделы
-
   const buttonAddTheme = document.querySelector(".projects-title__add-theme"); // добавить раздел
-
   const mainTitleH = document.querySelector(".main-title > h2"); // главный титл
-
   const mainList = document.querySelector(".main-list"); // доска заданий
 
   let activeMenu = ""; // активный раздел
@@ -143,10 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
       li.dataset.name = `theme${this.id}`;
       li.dataset.id = `${this.id}`;
       li.innerHTML = `
-            <div class="item-icon"><i class="fa-solid fa-list-check"></i></div>
-            <div class="item-name">${this.name}</div>
-            <div class="item-count">0</div>
-        `;
+        <div class="item-icon"><i class="fa-solid fa-list-check"></i></div>
+        <div class="item-name">${this.name}</div>
+        <div class="item-count">0</div>
+      `;
       projectsList.append(li);
 
       li.addEventListener("click", (e) => {
@@ -180,22 +176,22 @@ document.addEventListener("DOMContentLoaded", () => {
       li.className = "main-item";
       divTask.className = "task";
       divTask.innerHTML = `
-            <div class="task-chek"><i class="fa-solid fa-check"></i></div>
-            <div class="task-content red">
-            <div class="task-header">
-                <div class="task-title">
-                <h3>${this.title}</h3>
-                </div>
-                <div class="controls">
-                <div class="controls-item control-edit fa-solid fa-pen"></div>
-                <div class="controls-item control-remove fa-solid fa-trash-can"></div>
-                </div>
-            </div>
-            <div class="task-desc">
-                <p>${this.description}</p>
-            </div>
-            </div>
-        `;
+        <div class="task-chek"><i class="fa-solid fa-check"></i></div>
+        <div class="task-content red">
+        <div class="task-header">
+          <div class="task-title">
+          <h3>${this.title}</h3>
+          </div>
+          <div class="controls">
+          <div class="controls-item control-edit fa-solid fa-pen"></div>
+          <div class="controls-item control-remove fa-solid fa-trash-can"></div>
+          </div>
+        </div>
+        <div class="task-desc">
+          <p>${this.description}</p>
+        </div>
+        </div>
+      `;
       li.append(divTask);
 
       mainList.prepend(li);
@@ -231,14 +227,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       localStorage.setItem("Grymyl_Theme_lists", JSON.stringify(i));
     }
-  }
-
-  // функция считает возвращает нужный id для меню
-  function idsMenu() {
-    const projectsItems = document.querySelectorAll(".projects-items");
-    const lastItem = projectsItems[projectsItems.length - 1] || 0;
-    if (lastItem != 0) return +lastItem.dataset.id + 1;
-    return 1;
   }
 
   // функция счетчик задач в разделе
@@ -287,6 +275,14 @@ document.addEventListener("DOMContentLoaded", () => {
     mainControlPlus.style.display = "block";
     mainControlEdit.style.display = "block";
     mainControlRemove.style.display = "block";
+  }
+
+  // функция считает возвращает нужный id для меню
+  function idsMenu() {
+    const projectsItems = document.querySelectorAll(".projects-items");
+    const lastItem = projectsItems[projectsItems.length - 1] || 0;
+    if (lastItem != 0) return +lastItem.dataset.id + 1;
+    return 1;
   }
 
   // функция добавления раздела
